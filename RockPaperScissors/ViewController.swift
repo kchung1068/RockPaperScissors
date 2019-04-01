@@ -22,8 +22,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var opponentScore: UILabel!
     @IBOutlet var tapTwo: UITapGestureRecognizer!
     @IBOutlet var buttonStart: UIButton!
+    
+    
+    var currentimage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         imagePicker.delegate = self
         for image in images {
             if image.image == UIImage(named: "rockk") {
@@ -194,25 +198,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePicker.dismiss(animated: true) {
             let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-            for image in self.images {
-                image.image = selectedImage
-                
-            }
+            self.currentimage.image = selectedImage
+            
             }
     }
     @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
+        
+        
         let selectedpoint = sender.location(in: stackView)
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-            for image in images {
-                if image.frame.contains(selectedpoint) {
-                    image.image = selectedImage
-                }
-            }
-            imagePicker.dismiss(animated: true) {
-            }
-        }
+        
         CPUImage.image = UIImage()
         PlayerImage.image = UIImage()
         opponentLabel.text = ""
@@ -230,13 +225,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             opponentScore.text = "\(opponentscore)"
         }
        resultLabel.text = ""
-        for image in images {
-            if image.frame.contains(selectedpoint) {
-                print(image.tag)
+        for selectedImageView in images {
+            if selectedImageView.frame.contains(selectedpoint) {
+                currentimage = selectedImageView
+                
+                
                 present(imagePicker, animated: true, completion: nil)
+                
+                
             }
         }
     }
+    
+    
     
     @IBAction func longPress(_ sender: UITapGestureRecognizer) {
         
