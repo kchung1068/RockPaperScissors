@@ -38,7 +38,7 @@
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="ddn-0G-Ugf" appends="YES" id="J6x-xm-nNg"/>
                                     <outletCollection property="gestureRecognizers" destination="HF5-Kq-OiV" appends="YES" id="2pF-Ms-PtJ"/>
-                                    <outletCollection property="gestureRecognizers" destination="jIw-EH-cvs" appends="YES" id="ahZ-gh-ID3"/>
+                                    <outletCollection property="gestureRecognizers" destination="Zte-6P-gMA" appends="YES" id="qD6-Pu-zB9"/>
                                 </connections>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ram-0j-BK8">
@@ -132,7 +132,6 @@
                         <outlet property="tapTwo" destination="HF5-Kq-OiV" id="IDU-9t-LNT"/>
                         <outlet property="timerLabel" destination="KsW-hs-bU4" id="EUa-0R-6MC"/>
                         <outletCollection property="images" destination="Lvs-qK-5kR" collectionClass="NSMutableArray" id="pZQ-Iv-pqe"/>
-                        <outletCollection property="images" destination="Lvs-qK-5kR" collectionClass="NSMutableArray" id="2Rl-oc-zGT"/>
                         <outletCollection property="images" destination="6Pq-jk-9fa" collectionClass="NSMutableArray" id="Lie-tf-9cP"/>
                         <outletCollection property="images" destination="s0t-7g-phN" collectionClass="NSMutableArray" id="lqb-ep-Chm"/>
                     </connections>
@@ -148,13 +147,13 @@
                         <action selector="doubleTap:" destination="BYZ-38-t0r" id="djP-zq-Ztv"/>
                     </connections>
                 </tapGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="jIw-EH-cvs">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="1" id="Zte-6P-gMA">
                     <connections>
-                        <action selector="longPress:" destination="BYZ-38-t0r" id="ZE8-oX-JBi"/>
+                        <action selector="longPress:" destination="BYZ-38-t0r" id="LCB-Fn-snq"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="134.53237410071944" y="132.66331658291458"/>
+            <point key="canvasLocation" x="227" y="-153"/>
         </scene>
     </scenes>
     <resources>

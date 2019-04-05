@@ -152,6 +152,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var numbers = [0,1,2]
     let imageandnumbers = [0: UIImage(named: "rockk"), 1: UIImage(named: "Scissors"), 2: UIImage(named: "Paper") ]
     @IBAction func rockpaper(_ sender: UITapGestureRecognizer) {
+        print("In Rock Paper")
         buttonStart.isEnabled = true
         let selectedpoint = sender.location(in: stackView)
         for image in images {
@@ -203,7 +204,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
     }
     @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
-        
+        print("In Double Tap")
         
         let selectedpoint = sender.location(in: stackView)
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
@@ -239,12 +240,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     
-    @IBAction func longPress(_ sender: UITapGestureRecognizer) {
-        
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-             present(imagePicker, animated: true, completion: nil)
-        }
+    @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
+        print("In Long Press \(sender.state.rawValue)")
+        if sender.state == UIGestureRecognizer.State.began {
         
         imagePicker.sourceType = UIImagePickerController.SourceType.camera
         let selectedpoint = sender.location(in: stackView)
@@ -265,14 +263,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             opponentScore.text = "\(opponentscore)"
         }
         resultLabel.text = ""
-        for image in images {
-            if image.frame.contains(selectedpoint) {
-                print(image.tag)
+
+
+        for selectedImageView in images {
+            if selectedImageView.frame.contains(selectedpoint) {
+                currentimage = selectedImageView
+
+
                 present(imagePicker, animated: true, completion: nil)
+
+
             }
-        }
+            }
     }
-    
+    }
     @IBAction func startButton(_ sender: Any) {
         resultLabel.text = ""
         buttonStart.isEnabled = false
