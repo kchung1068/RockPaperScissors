@@ -107,6 +107,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Uh-O6-a5q">
+                                <rect key="frame" x="299" y="629" width="296" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Change images to normal"/>
+                                <connections>
+                                    <action selector="normal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O9i-o0-cQp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -153,7 +161,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="227" y="-153"/>
+            <point key="canvasLocation" x="226.61870503597123" y="-153.26633165829145"/>
         </scene>
     </scenes>
     <resources>

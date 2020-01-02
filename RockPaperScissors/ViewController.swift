@@ -25,6 +25,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     var currentimage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,6 +105,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             resultLabel.text = "You Lost."
             selfLabel.text = "Rock"
         }
+        if PlayerImage.tag == 0 && CPUImage.tag == 0 {
+            resultLabel.text = "Tie!"
+            selfLabel.text = "Rock"
+            opponentLabel.text = "Rock"
+        }
+        if PlayerImage.tag == 0 && CPUImage.tag == 1 {
+            resultLabel.text = "You Won!"
+            selfLabel.text = "Rock"
+            opponentLabel.text = "Scissors"
+        }
+        if PlayerImage.tag == 0 && CPUImage.tag == 2 {
+            resultLabel.text = "You Lost."
+            selfLabel.text = "Rock"
+            opponentLabel.text = "Paper"
+        }
+        
         
         if PlayerImage.tag == 1 && CPUImage.image == UIImage(named: "rockk") {
             resultLabel.text = "You Lost."
@@ -116,6 +133,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if PlayerImage.tag == 1 && CPUImage.image == UIImage(named: "Paper") {
             resultLabel.text = "You Won!"
             selfLabel.text = "Scissors"
+        }
+        if PlayerImage.tag == 1 && CPUImage.tag == 0 {
+            resultLabel.text = "You Lost."
+            selfLabel.text = "Scissors"
+            opponentLabel.text = "Rock"
+        }
+        if PlayerImage.tag == 1 && CPUImage.tag == 1 {
+            resultLabel.text = "Tie!"
+            selfLabel.text = "Scissors"
+            opponentLabel.text = "Scissors"
+        }
+        if PlayerImage.tag == 1 && CPUImage.tag == 2 {
+            resultLabel.text = "You Won!"
+            selfLabel.text = "Scissors"
+            opponentLabel.text = "Paper"
         }
         
         if PlayerImage.tag == 2 && CPUImage.image == UIImage(named: "rockk") {
@@ -130,6 +162,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             resultLabel.text = "Tie!"
             selfLabel.text = "Paper"
         }
+        if PlayerImage.tag == 2 && CPUImage.tag == 0 {
+            resultLabel.text = "You Won!"
+            selfLabel.text = "Paper"
+            opponentLabel.text = "Rock"
+        }
+        if PlayerImage.tag == 2 && CPUImage.tag == 1 {
+            resultLabel.text = "You Lost."
+            selfLabel.text = "Paper"
+            opponentLabel.text = "Scissors"
+        }
+        if PlayerImage.tag == 2 && CPUImage.tag == 2 {
+            resultLabel.text = "Tie!"
+            selfLabel.text = "Paper"
+            opponentLabel.text = "Paper"
+        }
     }
     func opponent() {
         if CPUImage.image == UIImage(named: "rockk") {
@@ -142,6 +189,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             opponentLabel.text = "Paper"
         }
     }
+    
     var time = 3
     var timer = Timer()
     var playerscore = 0
@@ -151,6 +199,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var newimages = [UIImage(named: "rockk"), UIImage(named: "Scissors"), UIImage(named: "Paper")]
     var numbers = [0,1,2]
     let imageandnumbers = [0: UIImage(named: "rockk"), 1: UIImage(named: "Scissors"), 2: UIImage(named: "Paper") ]
+    
     @IBAction func rockpaper(_ sender: UITapGestureRecognizer) {
         print("In Rock Paper")
         buttonStart.isEnabled = true
@@ -173,11 +222,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 timer.invalidate()
                 time = 3
                 PlayerImage.tag = image.tag
+                
                 print(PlayerImage.tag)
                 print(image.tag)
             }
             let randomnumber = Int.random(in: 0..<3)
-            CPUImage.image = newimages[randomnumber]
+            let randomimage = images[randomnumber]
+            
+            
+            CPUImage.image = randomimage.image
+            CPUImage.tag = randomimage.tag
             imageMatches()
             imagetagMatches()
             opponent()
@@ -268,11 +322,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         for selectedImageView in images {
             if selectedImageView.frame.contains(selectedpoint) {
                 currentimage = selectedImageView
-
-
                 present(imagePicker, animated: true, completion: nil)
-
-
             }
             }
     }
@@ -311,4 +361,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         })
     }
+    
+    @IBAction func normal(_ sender: Any) {
+        
+        for image in images {
+            let random3 = Int.random(in: 0..<3)
+            if image.tag == 0 {
+                image.image = UIImage(named: "rockk")
+            }
+            if image.tag == 1 {
+                image.image = UIImage(named: "Scissors")
+            }
+            if image.tag == 2 {
+                image.image = UIImage(named: "Paper")
+            }
+            
+        }
+    }
+    
 }
